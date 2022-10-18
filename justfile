@@ -12,22 +12,12 @@ build: echo
 push: echo
     #!/usr/bin/env bash
     set -euxo pipefail
-    V=v`bat Cargo.toml | taplo get package.version`
     podman push {{repo}}/{{app}}:{{V}}
 
 deploy: echo
     #!/usr/bin/env bash
     set -euxo pipefail
-    V=v`bat Cargo.toml | taplo get package.version`
     gcloud run deploy {{app}} --image {{repo}}/{{app}}:{{V}}
-
-check: echo
-    #!/usr/bin/env bash
-    set -euxo pipefail
-    cargo test
-    cargo check
-    cargo clippy
-    dprint check
 
 echo:
     #!/usr/bin/env bash
