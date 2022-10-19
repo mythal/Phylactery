@@ -10,6 +10,6 @@
               #:prefix license:))
 
 (define pkgs
-  (list python just poetry))
+  (list just poetry))
 
 (packages->manifest pkgs)
