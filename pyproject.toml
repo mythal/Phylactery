@@ -9,9 +9,10 @@ license = "AGPL-3.0-or-later"
 python = "^3.9"
 google-api-core = "^2.10.2"
 google-cloud-compute = "^1.6.1"
-python-telegram-bot = "^13.14"
+python-telegram-bot = {version = "^13.14", allow-prereleases = true}
 
 [tool.poetry.dev-dependencies]
+python-lsp-server = {extras = ["all"], version = "^1.5.0"}
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
