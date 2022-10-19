@@ -1,5 +1,5 @@
-V := env_var("V")
-app := env_var("APP")
+V := `cat ./pyproject.toml | taplo get tool.poetry.version`
+app := `cat ./pyproject.toml | taplo get tool.poetry.name`
 repo := env_var("REPO")
 
 all: build
