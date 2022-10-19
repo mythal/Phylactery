@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "phylactery"
-version = "0.1.0"
+version = "0.1.1"
 description = "Phylactery in a box!"
 authors = ["ギャラ <me@gyara.moe>"]
 license = "AGPL-3.0-or-later"

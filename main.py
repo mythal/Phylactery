@@ -114,6 +114,7 @@ group_id = int(os.environ["CHAT_ID"])
 def start(update: Update, context: CallbackContext):
     if update.effective_chat.id != group_id:
         context.bot.send_message(chat_id=update.effective_chat.id, text="403")
+        return
     start_instance(project, zone, instance)
     context.bot.send_message(chat_id=update.effective_chat.id, text="200")
 
@@ -121,6 +122,7 @@ def start(update: Update, context: CallbackContext):
 def stop(update: Update, context: CallbackContext):
     if update.effective_chat.id != group_id:
         context.bot.send_message(chat_id=update.effective_chat.id, text="403")
+        return
     stop_instance(project, zone, instance)
     context.bot.send_message(chat_id=update.effective_chat.id, text="200")
 
