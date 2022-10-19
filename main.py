@@ -112,19 +112,24 @@ group_id = int(os.environ["CHAT_ID"])
 
 # bot
 def start(update: Update, context: CallbackContext):
-    if update.effective_chat.id != group_id:
-        context.bot.send_message(chat_id=update.effective_chat.id, text="403")
+    chat_id = update.effective_chat.id
+    if chat_id != group_id:
+        context.bot.send_message(chat_id=chat_id, text="403")
         return
+    
+    context.bot.send_message(chat_id=chat_id, text=f"Starting {instance}...")
     start_instance(project, zone, instance)
-    context.bot.send_message(chat_id=update.effective_chat.id, text="200")
+    context.bot.send_message(chat_id=chat_id, text=f"{instance} is started")
 
 
 def stop(update: Update, context: CallbackContext):
+    chat_id = update.effective_chat.id
     if update.effective_chat.id != group_id:
-        context.bot.send_message(chat_id=update.effective_chat.id, text="403")
+        context.bot.send_message(chat_id=chat_id, text="403")
         return
+    context.bot.send_message(chat_id=chat_id, text=f"Stopping {instance}...")
     stop_instance(project, zone, instance)
-    context.bot.send_message(chat_id=update.effective_chat.id, text="200")
+    context.bot.send_message(chat_id=chat_id, text=f"{instance} is stopped")
 
 
 # For test
