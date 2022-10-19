@@ -107,7 +107,7 @@ token = os.environ["TOKEN"]
 secret = os.getenv("SECRET", "")
 # Url to this bot.
 self_endpoint = os.environ["ENDPOINT"]
-group_id = os.environ["CHAT_ID"]
+group_id = int(os.environ["CHAT_ID"])
 
 
 # bot
