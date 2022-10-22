@@ -9,11 +9,12 @@ all: build
 build: echo
     #!/usr/bin/env bash
     set -euxo pipefail
-    {{docker}} build -t {{repo}}/{{app}}:{{V}} .
+    {{docker}} build -t {{repo}}/{{app}}:{{V}} -t {{repo}}/{{app}} .
 
 push: echo
     #!/usr/bin/env bash
     set -euxo pipefail
+    {{docker}} push {{repo}}/{{app}}
     {{docker}} push {{repo}}/{{app}}:{{V}}
 
 deploy: echo
