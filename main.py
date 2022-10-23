@@ -108,6 +108,7 @@ secret = os.getenv("SECRET", "")
 # Url to this bot.
 self_endpoint = os.environ["ENDPOINT"]
 group_id = int(os.environ["CHAT_ID"])
+admin_id = os.getenv("ADMIN_ID") and int(os.getenv("ADMIN_ID"))
 
 
 # bot
@@ -116,7 +117,7 @@ def start(update: Update, context: CallbackContext):
     if chat_id != group_id:
         context.bot.send_message(chat_id=chat_id, text="403")
         return
-    
+
     context.bot.send_message(chat_id=chat_id, text=f"Starting {instance}...")
     start_instance(project, zone, instance)
     context.bot.send_message(chat_id=chat_id, text=f"{instance} is started")
@@ -127,6 +128,11 @@ def stop(update: Update, context: CallbackContext):
     if update.effective_chat.id != group_id:
         context.bot.send_message(chat_id=chat_id, text="403")
         return
+
+    if admin_id is not None and update.message.from_user.id != admin_id:
+        context.bot.send_message(chat_id=chat_id, text="403")
+        return
+
     context.bot.send_message(chat_id=chat_id, text=f"Stopping {instance}...")
     stop_instance(project, zone, instance)
     context.bot.send_message(chat_id=chat_id, text=f"{instance} is stopped")
